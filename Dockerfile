@@ -19,12 +19,12 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     file="$dir/info/settings.json" && \
     sed -i 's|\("download-dir":\) .*|\1 "'"$dir"'/downloads",|' $file && \
     sed -i '/"blocklist-enabled"/a\    "dht-enabled": true,' $file && \
-    sed -i '/"download-dir"/a\    "incomplete-dir": "'"$dir"'/incomplete",' \
-                $file && \
-    sed -i '/"incomplete-dir"/a\    "incomplete-dir-enabled": true,' $file && \
-    sed -i '/"peer-port"/a\    "peer-socket-tos": "lowcost",' $file && \
+    sed -i 's|\("incomplete-dir":\) .*|\1 "'"$dir"'/incomplete",|' $file && \
+    sed -i 's|\("incomplete-dir-enabled":\) .*|\1 "true",|' $file && \
+    sed -i 's|\("peer-socket-tos":\) .*|\1 "lowcost",|' $file && \
     sed -i '/"port-forwarding-enabled"/a\    "queue-stalled-enabled": true,' \
                 $file && \
+    sed -i 's|\("ratio-limit-enabled":\) .*|\1 "true",|' $file && \
     sed -i '/"queue-stalled-enabled"/a\    "ratio-limit-enabled": true,' \
                 $file && \
     chown -Rh debian-transmission. $dir && \
