@@ -20,13 +20,11 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
     sed -i 's|\("download-dir":\) .*|\1 "'"$dir"'/downloads",|' $file && \
     sed -i '/"blocklist-enabled"/a\    "dht-enabled": true,' $file && \
     sed -i 's|\("incomplete-dir":\) .*|\1 "'"$dir"'/incomplete",|' $file && \
-    sed -i 's|\("incomplete-dir-enabled":\) .*|\1 "true",|' $file && \
+    sed -i 's|\("incomplete-dir-enabled":\) .*|\1 true,|' $file && \
     sed -i 's|\("peer-socket-tos":\) .*|\1 "lowcost",|' $file && \
     sed -i '/"port-forwarding-enabled"/a\    "queue-stalled-enabled": true,' \
                 $file && \
-    sed -i 's|\("ratio-limit-enabled":\) .*|\1 "true",|' $file && \
-    sed -i '/"queue-stalled-enabled"/a\    "ratio-limit-enabled": true,' \
-                $file && \
+    sed -i 's|\("ratio-limit-enabled":\) .*|\1 true,|' $file && \
     chown -Rh debian-transmission. $dir && \
     rm -rf /var/lib/apt/lists/* /tmp/*
 COPY transmission.sh /usr/bin/
